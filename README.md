@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Wallet lib: https://www.rainbowkit.com/docs/modal-sizes 
 ## Available Scripts
 
 In the project directory, you can run:
