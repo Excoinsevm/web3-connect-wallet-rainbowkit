@@ -1,37 +1,41 @@
-import { defineChain } from 'viem';
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { createPublicClient, http } from 'viem';
+import { defineChain } from 'viem'; 
+import { getDefaultConfig } from '@rainbow-me/rainbowkit'; 
+import { createPublicClient, http } from 'viem'; 
 
-// Define a custom chain
+// Define a custom blockchain network with necessary details
 const customChain = defineChain({
-  id: 7171, // Replace with your custom chain's ID
-  name: 'Bitrock Mainnet',
-  nativeCurrency: {
-    name: 'Bitrock',
-    symbol: 'BROCK', // Replace with your chain's native token symbol
-    decimals: 18,
+  id: 7171, // The unique identifier for the custom blockchain network
+  name: 'Bitrock Mainnet', // The name of the blockchain network
+  nativeCurrency: { 
+    name: 'Bitrock', // The name of the native token for this chain
+    symbol: 'BROCK', // The symbol for the native token
+    decimals: 18, // Number of decimals for the token
   },
   rpcUrls: {
-    default: { http: ['https://connect.bit-rock.io'] }, // Replace with your RPC URL
+    default: { http: ['https://connect.bit-rock.io'] }, // The URL for connecting to the blockchain network
   },
   blockExplorers: {
-    default: { name: 'Bitrock Explorer', url: 'https://explorer.bit-rock.io' }, // Replace with your block explorer
+    default: { 
+      name: 'Bitrock Explorer', // The name of the blockchain explorer
+      url: 'https://explorer.bit-rock.io', // URL for the blockchain explorer
+    },
   },
 });
 
-// Create a viem public client for the custom chain
+// Create a public client instance for interacting with the custom blockchain
 const customChainClient = createPublicClient({
-  chain: customChain,
-  transport: http(customChain.rpcUrls.default.http[0]),
+  chain: customChain, // The custom chain definition
+  transport: http(customChain.rpcUrls.default.http[0]), // HTTP transport using the chain's RPC URL
 });
 
-// Configure RainbowKit with the custom chain
+// Configure RainbowKit with the custom chain and related settings
 const config = getDefaultConfig({
-  appName: 'My RainbowKit App',
-  projectId: '6a677833debbe13f1177e783512866f9', // Replace with your WalletConnect Project ID
-  chains: [customChain], // Add the custom chain
-  publicClients: [customChainClient], // Use the custom chain client
-  ssr: true, // Enable server-side rendering (if needed)
+  appName: 'My RainbowKit App', // The name of the application using RainbowKit
+  projectId: '6a677833debbe13f1177e783512866f9', // WalletConnect Project ID for authentication
+  chains: [customChain], // List of chains, including the custom chain
+  publicClients: [customChainClient], // List of public clients for chain interaction
+  ssr: true, // Enable server-side rendering support
 });
 
+// Export the configuration object for use in the application
 export default config;
