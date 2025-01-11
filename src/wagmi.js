@@ -31,7 +31,7 @@ const customChainClient = createPublicClient({
 // Configure RainbowKit with the custom chain and related settings
 const config = getDefaultConfig({
   appName: 'My RainbowKit App', // The name of the application using RainbowKit
-  projectId: '6a677833debbe13f1177e783512866f9', // WalletConnect Project ID for authentication
+  projectId: '', // WalletConnect Project ID for authentication
   chains: [customChain], // List of chains, including the custom chain
   publicClients: [customChainClient], // List of public clients for chain interaction
   ssr: true, // Enable server-side rendering support
